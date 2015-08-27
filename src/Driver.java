@@ -1,10 +1,16 @@
+import java.awt.Component;
+import java.awt.GridLayout;
 import java.io.File;
 import java.util.ArrayList;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
 
 
 public class Driver {
 	static ArrayList<File> files = new ArrayList<File>();							//Stores all the files in the folder
 	static ArrayList<File> execfiles = new ArrayList<File>();						//Stores executable files from the folder
+	static ButtonFrame frame = new ButtonFrame();
 	/**
 	 * @param args
 	 */
@@ -15,20 +21,28 @@ public class Driver {
 		files = listFilesForFolder(folder);										//Updates current files list
 		
 		checkIfExecutable();													//checks for executable files
+		addButtons();
+		frame.setLayout(new GridLayout(2,1));
+		frame.setTitle("Install the following:");
+		frame.setSize(600,600);
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+		updateLoop();
 		
-		for(int a = 0; a < files.size(); a++){									//Test statement
-			System.out.println(files.get(a));
-		}
 		
 		for(int a = 0; a < execfiles.size(); a++){								//Test statement
 			System.out.println(execfiles.get(a));
 		}
 		
-		
-		
-		
 	}
 	
+	private static void updateLoop() {
+		// TODO Auto-generated method stub
+		JButton[] buttons = (JButton[]) frame.getComponents();
+		buttons[0]
+	}
+
 	public static ArrayList<File> listFilesForFolder(final File folder) {		//Retrieves files in the directory
 		ArrayList<File> a = new ArrayList<File>();
 	    for (final File fileEntry : folder.listFiles()) {
@@ -54,5 +68,18 @@ public class Driver {
 		}
 	}
 	
+	public ArrayList<File> getFiles(){
+		return execfiles;
+	}
+
+	public static void addButtons(){
+		JButton firstButton = new JButton("1) " + execfiles.get(0).getName());
+		JButton secondButton = new JButton("2) " + execfiles.get(1).getName());
+//		JButton thirdButton = new JButton("3) " + execfiles.get(2).getName());
+		frame.add(firstButton);
+		frame.add(secondButton);
+//		frame.add(thirdButton);
+		
+	}
 	
 }
