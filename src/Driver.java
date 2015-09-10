@@ -1,4 +1,6 @@
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
 import javax.swing.JButton;
@@ -42,7 +44,11 @@ public class Driver {
 	private static void updateLoop() {
 		// TODO Auto-generated method stub
 		for (JButton b: fButton){
-			b.addActionListener(ActionLister n);
+			b.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent e){
+					
+				}
+			});
 		}
 	}
 
